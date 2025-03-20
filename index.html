@@ -9,73 +9,19 @@
 <body>
   <h1>Barcode Scanner Test Page</h1>
   
-  <!-- Each row represents a different scanning technology -->
+  <!-- Existing content (rows for different scanners, etc.) -->
   <div class="scanner-row">
     <button id="btn-zxing">Scan</button>
     <span>ZXing.JS</span>
   </div>
-  <div class="scanner-row">
-    <button id="btn-quagga">Scan</button>
-    <span>QuaggaJS</span>
+  <!-- ... other rows ... -->
+
+  <!-- Add a link to the ZXing test page -->
+  <div style="text-align:center; margin-top: 20px;">
+    <a href="zxingtest.html">Go to ZXing Test Page</a>
   </div>
-  <div class="scanner-row">
-    <button id="btn-detector">Scan</button>
-    <span>BarcodeDetector API</span>
-  </div>
-  <div class="scanner-row">
-    <button id="btn-dynamsoft">Scan</button>
-    <span>Dynamsoft Barcode Reader</span>
-  </div>
-  <div class="scanner-row">
-    <button id="btn-zbar">Scan</button>
-    <span>ZBar</span>
-  </div>
-  <div class="scanner-row">
-    <button id="btn-scanbot">Scan</button>
-    <span>Scanbot Web SDK</span>
-  </div>
-  <div class="scanner-row">
-    <button id="btn-mlkit">Scan</button>
-    <span>ML Kit Barcode Scanning API</span>
-  </div>
-  <div class="scanner-row">
-    <button id="btn-barkoder">Scan</button>
-    <span>barKoder Barcode Scanner SDK</span>
-  </div>
-  
-  <!-- Optional container for video/camera stream -->
-  <div id="scanner-container">
-    <video id="video" autoplay muted playsinline></video>
-  </div>
-  
-  <!-- CDN Script tags for libraries -->
-  
-  <!-- ZXing.JS (via unpkg) -->
-  <script src="https://unpkg.com/@zxing/library@latest"></script>
-  
-  <!-- QuaggaJS (via unpkg) -->
-  <script src="https://unpkg.com/quagga@0.12.1/dist/quagga.min.js"></script>
-  
-  <!-- Dynamsoft Barcode Reader (via jsDelivr) -->
-  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-javascript-barcode@latest/dist/dbr.js"></script>
-  
-  <!-- Note: BarcodeDetector API is built into modern browsers (no script needed) -->
-  
-  <!-- ZBar: No official CDN available. You must download ZBar (or compile to WebAssembly)
-       and host the resulting file (e.g., js/zbar.js) manually. -->
-  <!-- <script src="js/zbar.js"></script> -->
-  
-  <!-- Scanbot Web SDK (via CDN; check with Scanbot docs for current URL) -->
-  <script src="https://cdn.scanbot.io/web-sdk/latest/scanbot-web-sdk.js"></script>
-  
-  <!-- Firebase for ML Kit (via CDN) -->
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-ml-vision-compat.js"></script>
-  
-  <!-- barKoder Barcode Scanner SDK (via jsDelivr; if available) -->
-  <script src="https://cdn.jsdelivr.net/npm/barkoder-barcode-scanner-sdk@latest/dist/barkoder.js"></script>
-  
-  <!-- Custom JS modules -->
+
+  <!-- Script includes for various scanner modules -->
   <script src="js/zxingScanner.js"></script>
   <script src="js/quaggaScanner.js"></script>
   <script src="js/detectorScanner.js"></script>
