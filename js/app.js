@@ -1,9 +1,23 @@
 /* js/app.js */
 
-// Global function to stop all active scanners (stub)
+// Global function to stop all active scanners
 function stopAllScanners() {
-    console.log("Stopping all scanners (stub).");
-    // TODO: Add logic to stop video streams or clean up resources if needed.
+    const video = document.getElementById('video');
+    if (video && video.srcObject) {
+      let stream = video.srcObject;
+      let tracks = stream.getTracks();
+      tracks.forEach(track => track.stop());
+      video.srcObject = null;
+    }
+    // Stop Quagga if it's running
+    if (window.Quagga) {
+      try {
+        Quagga.stop();
+      } catch (err) {
+        console.error("Error stopping Quagga: ", err);
+      }
+    }
+    console.log("Stopped all scanners.");
   }
   
   document.addEventListener('DOMContentLoaded', function() {
@@ -23,6 +37,7 @@ function stopAllScanners() {
       startDetectorScanner();
     });
     
+    // The remaining buttons (Dynamsoft, ZBar, Scanbot, ML Kit, barKoder) remain as stubs.
     document.getElementById('btn-dynamsoft').addEventListener('click', function() {
       console.log("Starting Dynamsoft Barcode Reader scanner");
       startDynamsoftScanner();
