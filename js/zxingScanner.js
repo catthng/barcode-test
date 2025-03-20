@@ -3,17 +3,15 @@ let codeReader; // Global ZXing reader instance
 
 // Start continuous scanning using the video element with id "video"
 function startZXingScannerWithStream() {
-  // Initialize the ZXing reader if it hasn't been created already.
   if (!codeReader) {
     codeReader = new ZXing.BrowserMultiFormatReader();
     console.log("ZXing code reader initialized");
   }
   
-  // Start decoding from the default video device using the video element 'video'
   codeReader.decodeFromVideoDevice(null, 'video', (result, err) => {
     if (result) {
       console.log("ZXing detected: ", result.text);
-      alert("ZXing detected: " + result.text);
+      displayResult(result.text);
       stopZXingScanner();
     }
     if (err && !(err instanceof ZXing.NotFoundException)) {
@@ -28,5 +26,17 @@ function stopZXingScanner() {
     codeReader.reset();
     codeReader = null;
     console.log("ZXing scanner stopped");
+  }
+}
+
+// Update a DOM element to show the detected barcode result
+function displayResult(text) {
+  const resultEl = document.getElementById('resultDisplay');
+  if (resultEl) {
+    resultEl.innerText = "Detected: " + text;
+    // Optionally, add a CSS class to highlight the result
+    resultEl.classList.add('detected');
+  } else {
+    console.log("Detected: " + text);
   }
 }
