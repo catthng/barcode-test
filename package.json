@@ -1,0 +1,12 @@
+{
+    "name": "barcode-test",
+    "version": "1.0.0",
+    "description": "A testbed for comparing various barcode scanning methods on mobile web browsers.",
+    "main": "index.html",
+    "scripts": {
+      "start": "live-server"
+    },
+    "author": "",
+    "license": "MIT"
+  }
+  
