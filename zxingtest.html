@@ -10,27 +10,36 @@
   <h1>ZXing Test Options</h1>
   
   <div id="controls">
-    <button onclick="option1()">Option 1: Low Resolution (320x240)</button>
-    <span>Uses 320x240 resolution.</span>
+    <!-- Button 1: 720p resolution -->
+    <button onclick="option1()">Option 1: 720p resolution</button>
+    <span>Uses 1280x720.</span>
     <br>
-    <button onclick="option2()">Option 2: Medium Resolution (640x480)</button>
-    <span>Uses 640x480 resolution.</span>
+    <!-- Button 2: 720p resolution, 3x zoom -->
+    <button onclick="option2()">Option 2: 720p resolution, 3x zoom</button>
+    <span>1280x720 with advanced zoom: 3.</span>
     <br>
-    <button onclick="option3()">Option 3: High Resolution (1920x1080)</button>
-    <span>Uses 1920x1080 resolution.</span>
+    <!-- Button 3: 1080p resolution, 3x zoom -->
+    <button onclick="option3()">Option 3: 1080p resolution, 3x zoom</button>
+    <span>1920x1080 with advanced zoom: 3.</span>
     <br>
-    <button onclick="option4()">Option 4: Zoom 2x (640x480)</button>
-    <span>640x480 resolution with an advanced zoom constraint (zoom=2).</span>
+    <!-- Button 4: 1080p resolution, 5x zoom -->
+    <button onclick="option4()">Option 4: 1080p resolution, 5x zoom</button>
+    <span>1920x1080 with advanced zoom: 5.</span>
     <br>
-    <button onclick="option5()">Option 5: Manual Focus (640x480)</button>
-    <span>640x480 resolution with a manual focus constraint (focusDistance=0.5).</span>
+    <!-- Button 5: 1080p resolution, short focus distance -->
+    <button onclick="option5()">Option 5: 1080p resolution, short focus distance</button>
+    <span>1920x1080 with manual focus set to 0.3.</span>
+    <br>
+    <!-- Button 6: 1080p resolution, 3x zoom, shortest focus distance -->
+    <button onclick="option6()">Option 6: 1080p resolution, 3x zoom, shortest focus</button>
+    <span>1920x1080 with advanced zoom: 3 and manual focus set to 0.1.</span>
   </div>
   
   <div id="scannerContainer">
     <video id="video" autoplay muted playsinline></video>
   </div>
   
-  <!-- Load ZXing library -->
+  <!-- Load ZXing library from CDN -->
   <script src="https://unpkg.com/@zxing/library@latest"></script>
   <!-- Our custom modules -->
   <script src="js/zxingScanner.js"></script>

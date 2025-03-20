@@ -1,75 +1,93 @@
 /* js/zxingtest.js */
+
+// Each option function creates a stream with different constraints
 function option1() {
-    // Option 1: Low Resolution (320x240)
+    // Option 1: 720p resolution (1280x720)
     const constraints = {
       video: {
-        width: { exact: 320 },
-        height: { exact: 240 },
+        width: { exact: 1280 },
+        height: { exact: 720 },
         facingMode: "environment"
       }
     };
-    startWithConstraints(constraints, "Option 1: Low Resolution (320x240)");
+    startWithConstraints(constraints, "Option 1: 720p resolution");
   }
   
   function option2() {
-    // Option 2: Medium Resolution (640x480)
+    // Option 2: 720p resolution, 3x zoom
     const constraints = {
       video: {
-        width: { exact: 640 },
-        height: { exact: 480 },
-        facingMode: "environment"
+        width: { exact: 1280 },
+        height: { exact: 720 },
+        facingMode: "environment",
+        advanced: [{ zoom: 3 }]
       }
     };
-    startWithConstraints(constraints, "Option 2: Medium Resolution (640x480)");
+    startWithConstraints(constraints, "Option 2: 720p resolution, 3x zoom");
   }
   
   function option3() {
-    // Option 3: High Resolution (1920x1080)
+    // Option 3: 1080p resolution (1920x1080), 3x zoom
     const constraints = {
       video: {
         width: { exact: 1920 },
         height: { exact: 1080 },
-        facingMode: "environment"
+        facingMode: "environment",
+        advanced: [{ zoom: 3 }]
       }
     };
-    startWithConstraints(constraints, "Option 3: High Resolution (1920x1080)");
+    startWithConstraints(constraints, "Option 3: 1080p resolution, 3x zoom");
   }
   
   function option4() {
-    // Option 4: Zoom 2x at 640x480 (if supported)
+    // Option 4: 1080p resolution (1920x1080), 5x zoom
     const constraints = {
       video: {
-        width: { exact: 640 },
-        height: { exact: 480 },
+        width: { exact: 1920 },
+        height: { exact: 1080 },
         facingMode: "environment",
-        advanced: [{ zoom: 2 }]
+        advanced: [{ zoom: 5 }]
       }
     };
-    startWithConstraints(constraints, "Option 4: Zoom 2x (640x480)");
+    startWithConstraints(constraints, "Option 4: 1080p resolution, 5x zoom");
   }
   
   function option5() {
-    // Option 5: Manual Focus (640x480) with focusDistance=0.5 (if supported)
+    // Option 5: 1080p resolution, short focus distance (set to 0.3)
     const constraints = {
       video: {
-        width: { exact: 640 },
-        height: { exact: 480 },
+        width: { exact: 1920 },
+        height: { exact: 1080 },
         facingMode: "environment",
-        advanced: [{ focusMode: "manual", focusDistance: 0.5 }]
+        advanced: [{ focusMode: "manual", focusDistance: 0.3 }]
       }
     };
-    startWithConstraints(constraints, "Option 5: Manual Focus (640x480)");
+    startWithConstraints(constraints, "Option 5: 1080p resolution, short focus distance (0.3)");
+  }
+  
+  function option6() {
+    // Option 6: 1080p resolution, 3x zoom, shortest focus distance (set to 0.1)
+    const constraints = {
+      video: {
+        width: { exact: 1920 },
+        height: { exact: 1080 },
+        facingMode: "environment",
+        advanced: [{ zoom: 3, focusMode: "manual", focusDistance: 0.1 }]
+      }
+    };
+    startWithConstraints(constraints, "Option 6: 1080p resolution, 3x zoom, shortest focus (0.1)");
   }
   
   function startWithConstraints(constraints, optionDescription) {
     console.log("Starting " + optionDescription);
     navigator.mediaDevices.getUserMedia(constraints)
       .then(stream => {
+        console.log("Stream obtained for " + optionDescription);
         const videoElement = document.getElementById('video');
         videoElement.srcObject = stream;
         videoElement.play();
-        
-        // When metadata is loaded, start ZXing scanning
+  
+        // When the video metadata is loaded, wait a bit then start ZXing scanning.
         videoElement.onloadedmetadata = () => {
           setTimeout(() => {
             startZXingScannerWithStream();
